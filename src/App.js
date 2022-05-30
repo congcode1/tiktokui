@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import { DefaultLayout } from "~/components/Layout";
 import { publicRoutes } from "~/routes";
-import LoginGoogle from '~/components/LoginGoogle';
 
 function App() {
 
@@ -24,7 +23,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <LoginGoogle />
       <div className="App">
         <Routes>
           {publicRoutes.map(item => {

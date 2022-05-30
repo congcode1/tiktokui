@@ -5,13 +5,13 @@ const cx = classNames.bind(styles);
 
 function Header() {
     return (
-        <div className={cx('wrapper')}>
+        <header className={cx('wrapper')}>
             <div className={cx('inner')}>
                 {/* Logo */}
                 {/* Search */}
                 {/* Account */}
             </div>
-        </div>
+        </header>
     );
 }
 

@@ -1,7 +1,9 @@
 import { GoogleLogout } from 'react-google-login';
 
 function LogoutGoogle() {
-
+    const logout = (data) => {
+        console.log(data);
+    }
     return <>
         return
         <GoogleLogout
