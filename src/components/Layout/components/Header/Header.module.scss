@@ -14,17 +14,10 @@
 .inner {
     height: 100%;
     width: var(--default-layout-width);
+    padding: 0px var(--default-layout-horizontal-spacer);
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.wrapper {
-
-}
-
-.inner {
-
 }
 
 .logo {
