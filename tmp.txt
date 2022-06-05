@@ -1,4 +1,4 @@
-setTimeOut(() => {
+setTimeout(() => {
     debugger
 }, 4000)
 
