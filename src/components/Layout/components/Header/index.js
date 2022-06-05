@@ -1,22 +1,36 @@
-import styles from "./Header.module.scss";
 import classNames from "classnames/bind";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleQuestion, faCircleXmark, faEarthAsia, faEllipsisVertical, faKeyboard, faMagnifyingGlass, faSpinner, faCloudUpload, faMessage, faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
-import images from "~/assets/images";
 
 import HeadlessTippy from '@tippyjs/react/headless'; // different import path!
 import Tippy from '@tippyjs/react'; // different import path!
 import 'tippy.js/dist/tippy.css';
 
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faCircleQuestion,
+    faCircleXmark,
+    faEarthAsia,
+    faEllipsisVertical,
+    faKeyboard,
+    faMagnifyingGlass,
+    faSpinner,
+    faMessage,
+    faSignOutAlt
+} from "@fortawesome/free-solid-svg-icons";
+import { faSun, faUser } from "@fortawesome/free-regular-svg-icons";
+import { faTiktok } from "@fortawesome/free-brands-svg-icons";
+import { MailboxIcon, PlaneIcon, UploadIcon } from "~/components/Icons";
+
+
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/AccountItem";
 import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
-import { faSun, faUser } from "@fortawesome/free-regular-svg-icons";
-import { faBitcoin, faTiktok } from "@fortawesome/free-brands-svg-icons";
-
+import images from "~/assets/images";
+import Image from "~/components/Image";
+import styles from "./Header.module.scss";
 const cx = classNames.bind(styles);
+
 const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
@@ -91,6 +105,11 @@ function Header() {
             default:
         }
     }
+    const handleSearchInputChange = (e) => {
+        e.currentTarget.value
+            ? setSearchResult([1, 2, 3])
+            : setSearchResult([])
+    }
 
     return (
         <header className={cx('wrapper')}>
@@ -114,7 +133,9 @@ function Header() {
                     )}
                 >
                     <div className={cx('search')}>
-                        <input placeholder="Search accounts and videos" spellCheck={false} />
+                        <input placeholder="Search accounts and videos" spellCheck={false}
+                            onChange={e => handleSearchInputChange(e)}
+                        />
                         <button className={cx('clear')}>
                             <FontAwesomeIcon icon={faCircleXmark} />
                         </button>
@@ -132,12 +153,17 @@ function Header() {
                             <>
                                 <Tippy content="Upload" placement="bottom">
                                     <button className={cx('action-btn')}>
-                                        <FontAwesomeIcon icon={faCloudUpload} />
+                                        <UploadIcon />
                                     </button>
                                 </Tippy>
                                 <Tippy content="Message" placement="bottom">
                                     <button className={cx('action-btn')}>
-                                        <FontAwesomeIcon icon={faMessage} />
+                                        <PlaneIcon />
+                                    </button>
+                                </Tippy>
+                                <Tippy content="Message box" placement="bottom">
+                                    <button className={cx('action-btn')}>
+                                        <MailboxIcon />
                                     </button>
                                 </Tippy>
 
@@ -154,7 +180,11 @@ function Header() {
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser
                             ? (
-                                <img className={cx('user-avatar')} src="https://avatars.githubusercontent.com/u/73934789" alt="user avatar" />
+                                <Image
+                                    className={cx('user-avatar')}
+                                    src={images.fakeAvt}
+                                    alt="user avatar"
+                                />
                             )
                             : (
                                 <button className={cx('more-btn')}>

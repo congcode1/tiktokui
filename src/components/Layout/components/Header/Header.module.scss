@@ -110,7 +110,7 @@
 //actioon
 .action {
     display: flex;
-    align-items: center;
+    align-items: baseline;
 }
 
 .more-btn {
@@ -133,7 +133,7 @@
     height: 32px;
     border-radius: 50%;
     object-fit: cover;
-    margin-left: 32px;
+    margin-left: 20px;
 
     cursor: pointer;
 }

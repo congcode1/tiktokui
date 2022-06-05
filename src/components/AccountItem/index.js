@@ -1,14 +1,20 @@
+import classNames from "classnames/bind";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import classNames from "classnames/bind";
-import styles from "./AccountItem.module.scss";
 
+import Image from "../Image";
+import styles from "./AccountItem.module.scss";
+import images from "~/assets/images";
 const cx = classNames.bind(styles);
 
 function AccountItem() {
     return (
         <div className={cx('wrapper')}>
-            <img className={cx('avatar')} src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/51faeb2beb46a239fccc193230a4259b~c5_300x300.webp?x-expires=1654174800&x-signature=bmmd61QPqS%2BMFizcvTndc7s1RmI%3D" alt="" />
+            <Image
+                className={cx('avatar')}
+                src={images.fakeAvt}
+                alt=""
+            />
             <div className={cx('info')}>
                 <h4 className={cx('name')}>
                     <span>Nguyen Thanh Cong</span>
