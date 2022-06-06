@@ -1,20 +1,14 @@
 import classNames from "classnames/bind";
 
-import HeadlessTippy from '@tippyjs/react/headless'; // different import path!
 import Tippy from '@tippyjs/react'; // different import path!
 import 'tippy.js/dist/tippy.css';
 
-import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCircleQuestion,
-    faCircleXmark,
     faEarthAsia,
     faEllipsisVertical,
     faKeyboard,
-    faMagnifyingGlass,
-    faSpinner,
-    faMessage,
     faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { faSun, faUser } from "@fortawesome/free-regular-svg-icons";
@@ -22,13 +16,13 @@ import { faTiktok } from "@fortawesome/free-brands-svg-icons";
 import { MailboxIcon, PlaneIcon, UploadIcon } from "~/components/Icons";
 
 
-import { Wrapper as PopperWrapper } from "~/components/Popper";
-import AccountItem from "~/components/AccountItem";
+
 import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
 import images from "~/assets/images";
 import Image from "~/components/Image";
 import styles from "./Header.module.scss";
+import Search from "../Search";
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
@@ -63,7 +57,6 @@ const MENU_ITEMS = [
 ]
 
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
     const currentUser = true;
     const userMenu = [
         {
@@ -90,11 +83,7 @@ function Header() {
         },
     ]
 
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 2000)
-    }, [])
+
 
     //handle logic
     const handleMenuChange = (menuItem) => {
@@ -105,11 +94,7 @@ function Header() {
             default:
         }
     }
-    const handleSearchInputChange = (e) => {
-        e.currentTarget.value
-            ? setSearchResult([1, 2, 3])
-            : setSearchResult([])
-    }
+
 
     return (
         <header className={cx('wrapper')}>
@@ -117,35 +102,7 @@ function Header() {
                 <div className={cx('logo')}>
                     <img src={images.logo} alt="logoo" />
                 </div>
-                <HeadlessTippy
-                    interactive
-                    visible={searchResult.length > 0}
-                    render={attrs => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Search accounts and videos" spellCheck={false}
-                            onChange={e => handleSearchInputChange(e)}
-                        />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                <Search />
 
                 <div className={cx('action')}>
                     {currentUser
@@ -164,6 +121,7 @@ function Header() {
                                 <Tippy content="Message box" placement="bottom">
                                     <button className={cx('action-btn')}>
                                         <MailboxIcon />
+                                        <span className={cx('badge')}>12</span>
                                     </button>
                                 </Tippy>
 
