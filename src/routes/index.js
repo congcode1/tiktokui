@@ -8,7 +8,7 @@ import { Fragment } from "react";
 const publicRoutes = [
     { path: "/", component: Home },
     { path: "/following", component: Following },
-    { path: "/profile", component: Profile, layout: NoSidebarLayout },
+    { path: "/@:nickname", component: Profile, layout: NoSidebarLayout },
     { path: "/search", component: Search, layout: Fragment },
 ];
 
