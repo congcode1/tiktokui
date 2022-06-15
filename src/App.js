@@ -5,7 +5,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { DefaultLayout } from "~/components/Layout";
+import DefaultLayout from "~/layouts";
 import { publicRoutes } from "~/routes";
 
 function App() {
