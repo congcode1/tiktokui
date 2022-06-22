@@ -142,9 +142,6 @@ function Header() {
             seperate: true,
         },
     ]
-
-
-
     //handle logic
     const handleMenuChange = (menuItem) => {
         switch (menuItem) {
@@ -154,8 +151,6 @@ function Header() {
             default:
         }
     }
-
-
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
